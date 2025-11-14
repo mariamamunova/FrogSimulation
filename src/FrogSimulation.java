@@ -19,6 +19,9 @@ public class FrogSimulation {
     private int hopDistance(){
         /*implementation not shown */
         int start = 0;
+        start = (int) (Math.random() * 21 - 5);
+        // start = (int) (Math.random() * Integer.MAX_VALUE - (Integer.MAX_VALUE/2));
+        return start;
 
     }
 
