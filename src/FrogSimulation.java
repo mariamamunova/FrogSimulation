@@ -1,47 +1,42 @@
 public class FrogSimulation {
-    /** Distance, in inches, from the starting position to the goal. */
     private int goalDistance;
-
-    /** Maximum number of hops allowed to reach the goal. */
     private int maxHops;
-
-    /** Costructs a FrogSimulation where dist is the distance, in inches, from the starting
-     * position to the goal, and numHops is the maximum number of hops allowed to reach the goal.
-     * Precondition: dist > 0; numHops > 0
-     */
-    public FrogSimulation(int dist, int numHops){
+    public FrogSimulation (){
+    }
+    public FrogSimulation (int dist, int numHops){
         goalDistance = dist;
         maxHops = numHops;
     }
-
-    /** Returns an integer representing the distance, in inches, to be moved when the frog hops.
-     */
-    private int hopDistance(){
-        /*implementation not shown */
-        int start = 0;
-        start = (int) (Math.random() * 21 - 5);
-        // start = (int) (Math.random() * Integer.MAX_VALUE - (Integer.MAX_VALUE/2));
-        return start;
-
+    public int hopDistance(){
+        int x = 0;
+        x = (int) (Math.random() * 21 - 5);
+//        x = (int) (Math.random() * Integer.MAX_VALUE - (Integer.MAX_VALUE/2));
+        return x;
     }
-
-    /** Simulates a frog attempting to reach the goal as described in part (a).
-     * Returns true if the frog successfully reached or passed the goal during the simulation;
-     *         false otherwise.
-     */
-    public boolean simulate(){
-        /* include the starting position being at 0 */
-        if (goalDistance <= hopDistance())
-                return true;
-        else
+    public boolean simulate (){
+        int dist = 0;
+        int hops = 0;
+        while (dist < goalDistance){
+            hops++;
+            dist = dist + hopDistance();
+        }
+        if (hops < maxHops){
+            return true;
+        }else {
             return false;
+        }
     }
-
-    /** Runs num simulations and returns the proportion of simulations in which the frog
-     * successfully reached or passed the goal.
-     * Precondition: num > 0
-     */
-    public double runSimulations(int num){
-        /* to be implemented in part (b) */
+    public double runSimulations (int num){
+        double score = 0;
+        double score1 = 0;
+        double score2 = 0;
+        for (int i = 0; i < num; i++){
+            score2++;
+            if (simulate() == true){
+                score1++;
+            }
+        }
+        score = score1 / score2;
+        return score;
     }
 }
